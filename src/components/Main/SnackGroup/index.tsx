@@ -2,7 +2,6 @@ import styled from "styled-components"
 import { ReactNode } from "react"
 
 const Container = styled.div`
-    background-color: #FAFAFA;
     display: flex;
     flex-direction: column;
     gap: 15px;
