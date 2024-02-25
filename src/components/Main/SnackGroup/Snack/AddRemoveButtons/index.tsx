@@ -3,7 +3,7 @@ import styled from "styled-components"
 const DivAddRemoveSnackButtons = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 15px;
     justify-content: space-between;
 `
 

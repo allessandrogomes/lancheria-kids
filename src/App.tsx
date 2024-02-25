@@ -4,8 +4,7 @@ import Header from "./components/Header"
 import Logo from "./components/Header/Logo"
 import Main from "./components/Main"
 import InititalMessage from "./components/Main/InitialMessage"
-import SnackGroup from "./components/Main/SnackGroup"
-import Snack from "./components/Main/SnackGroup/Snack"
+import Snacks from "./components/Main/Snacks"
 
 
 function App() {
@@ -17,7 +16,16 @@ function App() {
       </Header>
       <Main>
         <InititalMessage />
-        <SnackGroup snackGroupName="Bolos">
+        <Snacks />
+      </Main>
+    </>
+  )
+}
+
+export default App
+
+
+{/* <SnackGroup snackGroupName="Bolos">
           <Snack
             snackName="Bolo de Cenoura"
             additionalSnackInformation="Informações Adicionais"
@@ -48,10 +56,4 @@ function App() {
             snackNameAlt="Doce de Banana"
             snackPrice={6.95}
           />
-        </SnackGroup>
-      </Main>
-    </>
-  )
-}
-
-export default App
+        </SnackGroup> */}

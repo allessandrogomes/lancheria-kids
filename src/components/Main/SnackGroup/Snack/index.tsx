@@ -13,6 +13,7 @@ const DivSnack = styled.div`
     display: flex;
     gap: 10px;
     justify-content: space-around;
+    align-items: center;
 `
 
 const Divider = styled.div`
@@ -24,14 +25,14 @@ const Divider = styled.div`
 
 interface SnackProps extends SnackInformationProps, SnackImageProps { }
 
-const Snack = ({ snackName, additionalSnackInformation, snackPrice, snackImage, snackNameAlt }: SnackProps) => {
+const Snack = ({ snackName, snackDescription, snackPrice, snackImage, snackNameAlt }: SnackProps) => {
     return (
         <Container>
             <Divider />
             <DivSnack>
                 <SnackInformation
                     snackName={snackName}
-                    additionalSnackInformation={additionalSnackInformation}
+                    snackDescription={snackDescription}
                     snackPrice={snackPrice}
                 />
                 <SnackImage
@@ -39,6 +40,7 @@ const Snack = ({ snackName, additionalSnackInformation, snackPrice, snackImage, 
                     snackNameAlt={snackNameAlt}
                 />
                 <AddRemoveSnackButtons />
+                <span style={{ alignSelf: 'center' }}>0</span>
             </DivSnack>
         </Container>
     )

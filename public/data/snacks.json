@@ -1,0 +1,80 @@
+{
+    "bolos": [
+        {
+            "id": 1,
+            "name": "Bolo de Cenoura",
+            "description": "Deliciosamente macio e irresistivelmente indulgente.",
+            "price": 19.90,
+            "image": "./images/cakes/bolo-de-cenoura.png",
+            "snackType": "bolo"
+        },
+        {
+            "id": 2,
+            "name": "Bolo de Chocolate",
+            "description": "Uma explosão de sabor para os amantes de chocolate.",
+            "price": 22.50,
+            "image": "./images/cakes/bolo-de-chocolate.png",
+            "snackType": "bolo"
+        },
+        {
+            "id": 3,
+            "name": "Bolo de Limão",
+            "description": "Refrescante e delicioso, uma combinação perfeita de doçura e acidez.",
+            "price": 18.75,
+            "image": "./images/cakes/bolo-de-limao.png",
+            "snackType": "bolo"
+        }
+    ],
+    "doces": [
+        {
+            "id": 1,
+            "name": "Brigadeiro",
+            "description": "Um clássico brasileiro, feito com chocolate, leite condensado e manteiga.",
+            "price": 1.50,
+            "image": "./images/candy/brigadeiro.png",
+            "snackType": "doce"
+        },
+        {
+            "id": 2,
+            "name": "Pudim de Leite Condensado",
+            "description": "Uma sobremesa tradicional e irresistivelmente cremosa.",
+            "price": 3.00,
+            "image": "./images/candy/pudim.png",
+            "snackType": "doce"
+        },
+        {
+            "id": 3,
+            "name": "Beijinho",
+            "description": "Um doce brasileiro de coco, feito com coco ralado, leite condensado e manteiga.",
+            "price": 1.75,
+            "image": "./images/candy/beijinho.png",
+            "snackType": "doce"
+        }
+    ],
+    "salgados": [
+        {
+            "id": 1,
+            "name": "Coxinha",
+            "description": "Um lanche tradicional brasileiro, recheado com frango desfiado e temperado.",
+            "price": 2.50,
+            "image": "./images/savories/coxinha.png",
+            "snackType": "salgado"
+        },
+        {
+            "id": 2,
+            "name": "Pastel de Carne",
+            "description": "Um pastel crocante e saboroso, recheado com carne moída temperada.",
+            "price": 3.00,
+            "image": "./images/savories/pastel-de-carne.png",
+            "snackType": "salgado"
+        },
+        {
+            "id": 3,
+            "name": "Esfiha de Carne",
+            "description": "Um salgado assado, com massa macia e recheio suculento de carne temperada.",
+            "price": 2.00,
+            "image": "./images/savories/esfiha-de-carne.png",
+            "snackType": "salgado"
+        }
+    ]
+}

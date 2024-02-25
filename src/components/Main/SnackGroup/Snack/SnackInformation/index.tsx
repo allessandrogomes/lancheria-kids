@@ -9,11 +9,13 @@ const DivSnackInformation = styled.div`
 const SnackName = styled.span`
     font-size: 0.875rem;
     font-weight: bold;
+    max-width: 110px;
 `
 
-const AdditionalInformation = styled.span`
+const Description = styled.span`
     color: #808080;
     font-size: 0.875rem;
+    max-width: 110px;
 `
 
 const Price = styled.span`
@@ -23,16 +25,19 @@ const Price = styled.span`
 
 export interface SnackInformationProps {
     snackName: string
-    additionalSnackInformation: string
+    snackDescription: string
     snackPrice: number
 }
 
-const SnackInformation = ({ snackName, additionalSnackInformation, snackPrice }: SnackInformationProps) => {
+const SnackInformation = ({ snackName, snackDescription, snackPrice }: SnackInformationProps) => {
+
+    const formattedPrice = snackPrice.toFixed(2).replace('.', ',')
+
     return (
         <DivSnackInformation>
             <SnackName>{snackName}</SnackName>
-            <AdditionalInformation>{additionalSnackInformation}</AdditionalInformation>
-            <Price>R$ {snackPrice}</Price>
+            <Description>{snackDescription}</Description>
+            <Price>R$ {formattedPrice}</Price>
         </DivSnackInformation>
     )
 }

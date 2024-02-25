@@ -4,16 +4,15 @@ import { ReactNode } from "react"
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    height: 100%;
-    min-height: 200px;
-    margin: 50px 15px;
+    gap: 25px;
+    margin: 30px 0;
     max-width: 100%;
 `
 
 const SnackGroupName = styled.span`
     font-size: 1rem;
     font-weight: bold;
+    text-transform: capitalize;
 `
 
 interface SnackGroupProps {
