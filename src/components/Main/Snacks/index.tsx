@@ -31,11 +31,11 @@ const Snacks = () => {
             try {
                 const response = await getSnacks()
                 setSnacks(response)
+            
             } catch (error) {
                 console.error(error)
             }
         }
-
         fetchDataSnacks()
     })
 
@@ -45,6 +45,7 @@ const Snacks = () => {
                 <SnackGroup key={index} snackGroupName={snackType}>
                     {snacks[snackType].map((snack) => (
                         <Snack
+                            id={snack.id}
                             key={snack.id}
                             snackName={snack.name}
                             snackDescription={snack.description}

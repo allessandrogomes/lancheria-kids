@@ -6,7 +6,7 @@ import Main from "./components/Main"
 import InititalMessage from "./components/Main/InitialMessage"
 import Snacks from "./components/Main/Snacks"
 import SnackBag from "./components/Main/SnackBag"
-import { ContextBagProvider } from "./context/ContextBag"
+import { BagProvider } from "./context/BagContext"
 
 
 function App() {
@@ -18,10 +18,10 @@ function App() {
       </Header>
       <Main>
         <InititalMessage />
-        <ContextBagProvider>
+        <BagProvider>
           <Snacks />
           <SnackBag />
-        </ContextBagProvider>
+        </BagProvider>
       </Main>
     </>
   )

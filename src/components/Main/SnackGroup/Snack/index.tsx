@@ -23,9 +23,11 @@ const Divider = styled.div`
     width: 100%;
 `
 
-interface SnackProps extends SnackInformationProps, SnackImageProps { }
+interface SnackProps extends SnackInformationProps, SnackImageProps { 
+    id: number
+}
 
-const Snack = ({ snackName, snackDescription, snackPrice, snackImage, snackNameAlt }: SnackProps) => {
+const Snack = ({ snackName, snackDescription, snackPrice, snackImage, snackNameAlt, id }: SnackProps) => {
     return (
         <Container>
             <Divider />
@@ -39,7 +41,11 @@ const Snack = ({ snackName, snackDescription, snackPrice, snackImage, snackNameA
                     snackImage={snackImage}
                     snackNameAlt={snackNameAlt}
                 />
-                <AddRemoveSnackButtons />
+                <AddRemoveSnackButtons
+                    snackName={snackName}
+                    snackPrice={snackPrice}
+                    id={id}
+                />
                 <span style={{ alignSelf: 'center' }}>0</span>
             </DivSnack>
         </Container>
