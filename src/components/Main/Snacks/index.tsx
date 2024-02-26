@@ -27,7 +27,7 @@ const Snacks = () => {
     const [snacks, setSnacks] = useState<SnackType>({})
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchDataSnacks = async () => {
             try {
                 const response = await getSnacks()
                 setSnacks(response)
@@ -36,7 +36,7 @@ const Snacks = () => {
             }
         }
 
-        fetchData()
+        fetchDataSnacks()
     })
 
     return (

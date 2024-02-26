@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const MainContainer = styled.main`
     height: 100%;
-    width: 100vw;
+    max-width: 100vw;
 `
 
 interface MainProps {
