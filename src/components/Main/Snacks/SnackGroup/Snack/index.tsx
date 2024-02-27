@@ -2,6 +2,8 @@ import styled from "styled-components"
 import SnackInformation, { SnackInformationProps } from "./SnackInformation"
 import SnackImage, { SnackImageProps } from "./SnackImage"
 import AddRemoveSnackButtons from "./AddRemoveButtons"
+import { useBag } from "../../../../../context/BagContext"
+import { useEffect, useState } from "react"
 
 const Container = styled.div`
     display: flex;
@@ -23,11 +25,35 @@ const Divider = styled.div`
     width: 100%;
 `
 
-interface SnackProps extends SnackInformationProps, SnackImageProps { 
+const AddedAmountOfSnack = styled.span`
+    font-weight: bold;
+    color: red;
+`
+
+interface SnackProps extends SnackInformationProps, SnackImageProps {
     id: number
 }
 
 const Snack = ({ snackName, snackDescription, snackPrice, snackImage, snackNameAlt, id }: SnackProps) => {
+    const [amountOfSnack, setAmountOfSnack] = useState<number>(0)
+
+    const { bag } = useBag()
+
+    useEffect(() => {
+        const updateAmountOfSnack = () => {
+            const snackIndex = bag.findIndex(snackOfBag => snackOfBag.id === id)
+
+            if (snackIndex !== -1) {
+                const updatedBag = [...bag]
+                setAmountOfSnack(updatedBag[snackIndex].amount)
+            } else {
+                setAmountOfSnack(0)
+            }
+        }
+
+        updateAmountOfSnack()
+    }, [bag])
+
     return (
         <Container>
             <Divider />
@@ -46,7 +72,7 @@ const Snack = ({ snackName, snackDescription, snackPrice, snackImage, snackNameA
                     snackPrice={snackPrice}
                     id={id}
                 />
-                <span style={{ alignSelf: 'center' }}>0</span>
+                <AddedAmountOfSnack>{amountOfSnack}</AddedAmountOfSnack>
             </DivSnack>
         </Container>
     )

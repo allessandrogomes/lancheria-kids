@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import styled from "styled-components"
 import { getSnacks } from "../../../api/getSnacks"
-import SnackGroup from "../SnackGroup"
-import Snack from "../SnackGroup/Snack"
+import SnackGroup from "./SnackGroup"
+import Snack from "./SnackGroup/Snack"
 
 const Container = styled.div`
     display: flex;

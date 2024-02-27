@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { useBag } from "../../../../../context/BagContext"
+import { useBag } from "../../../../../../context/BagContext"
 import { useEffect, useState } from "react"
 
 const DivAddRemoveSnackButtons = styled.div`
