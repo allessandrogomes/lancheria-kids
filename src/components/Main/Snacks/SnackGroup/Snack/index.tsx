@@ -41,10 +41,10 @@ const Snack = ({ snackName, snackDescription, snackPrice, snackImage, snackNameA
 
     useEffect(() => {
         const updateAmountOfSnack = () => {
-            const snackIndex = bag.findIndex(snackOfBag => snackOfBag.id === id)
+            const snackIndex = bag.snacks.findIndex(snackOfBag => snackOfBag.id === id)
 
             if (snackIndex !== -1) {
-                const updatedBag = [...bag]
+                const updatedBag = [...bag.snacks]
                 setAmountOfSnack(updatedBag[snackIndex].amount)
             } else {
                 setAmountOfSnack(0)

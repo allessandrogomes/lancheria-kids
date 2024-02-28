@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode, useEffect } from "react";
+import { createContext, useContext, useState, ReactNode } from "react";
 
 interface Snack {
     id: number
@@ -7,7 +7,11 @@ interface Snack {
     amount: number;
 }
 
-type Bag = Snack[]
+interface Bag {
+    snacks: Snack[]
+    totalPriceSnacks: number
+    totalAmountSnacks: number
+}
 
 interface BagContextType {
     bag: Bag
@@ -18,44 +22,85 @@ interface BagContextType {
 const BagContext = createContext<BagContextType | null>(null);
 
 const BagProvider = ({ children }: { children: ReactNode }) => {
-    const [bag, setBag] = useState<Bag>([]);
-
-    useEffect(() => {
-        console.log(bag)
-    }, [bag])
+    const [bag, setBag] = useState<Bag>({ snacks: [], totalPriceSnacks: 0, totalAmountSnacks: 0 });
 
     const addSnackToBag = (snack: Snack) => {
-        const snackIndex = bag.findIndex(item => item.id === snack.id)
 
-        if (snackIndex !== -1) {
-            const updatedBag = [...bag]
-            updatedBag[snackIndex] = {
-                ...updatedBag[snackIndex],
-                amount: updatedBag[snackIndex].amount + 1
+        setBag(prevBag => {
+            const snackIndex = prevBag.snacks.findIndex(item => item.id === snack.id)
+
+            if (snackIndex !== -1) {
+                const updatedSnacks = [...prevBag.snacks]
+                updatedSnacks[snackIndex] = {
+                    ...updatedSnacks[snackIndex],
+                    amount: updatedSnacks[snackIndex].amount + 1
+                }
+                return {
+                    ...prevBag,
+                    snacks: updatedSnacks
+                }
+            } else {
+                return {
+                    ...prevBag,
+                    snacks: [...prevBag.snacks, { ...snack, amount: 1 }]
+                }
             }
-            setBag(updatedBag)
-        } else {
-            setBag([...bag, snack])
-        }
+        })
+
+        sumTotalOrderPriceAndAmount()
     }
 
     const removeSnackFromBag = (snack: Snack) => {
-        const snackIndex = bag.findIndex(item => item.id === snack.id)
 
-        if (snackIndex !== -1) {
-            const updatedBag = [...bag]
-            if (updatedBag[snackIndex].amount > 1) {
-                updatedBag[snackIndex] = {
-                    ...updatedBag[snackIndex],
-                    amount: updatedBag[snackIndex].amount - 1
+        setBag(prevBag => {
+            const snackIndex = prevBag.snacks.findIndex(item => item.id === snack.id);
+
+            if (snackIndex !== -1) {
+                const updatedSnacks = [...prevBag.snacks];
+                if (updatedSnacks[snackIndex].amount > 1) {
+                    updatedSnacks[snackIndex] = {
+                        ...updatedSnacks[snackIndex],
+                        amount: updatedSnacks[snackIndex].amount - 1
+                    };
+                    return {
+                        ...prevBag,
+                        snacks: updatedSnacks
+                    };
+                } else {
+                    return {
+                        ...prevBag,
+                        snacks: updatedSnacks.filter(item => item.id !== snack.id)
+                    };
                 }
-                setBag(updatedBag)
             } else {
-                const updatedBagWithSnackRemoved = updatedBag.filter(item => item.id !== snack.id)
-                setBag(updatedBagWithSnackRemoved)
+                return prevBag;
             }
-        }
+        });
+        sumTotalOrderPriceAndAmount()
     }
+
+    const sumTotalOrderPriceAndAmount = () => {
+
+        setBag(prevBag => {
+            const totalPriceAndAmountOfSnacks = {
+                totalPriceSnacks: 0,
+                totalAmountSnacks: 0
+            }
+
+            prevBag.snacks.forEach(snackOfBag => {
+                totalPriceAndAmountOfSnacks.totalAmountSnacks += snackOfBag.amount;
+                totalPriceAndAmountOfSnacks.totalPriceSnacks += snackOfBag.price * snackOfBag.amount;
+            })
+
+            return {
+                ...prevBag,
+                totalAmountSnacks: totalPriceAndAmountOfSnacks.totalAmountSnacks,
+                totalPriceSnacks: totalPriceAndAmountOfSnacks.totalPriceSnacks
+            }
+        })
+    }
+
+
 
     return (
         <BagContext.Provider value={{ bag, addSnackToBag, removeSnackFromBag }}>

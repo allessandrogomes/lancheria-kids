@@ -28,6 +28,8 @@ const Price = styled.span`
 const TotalPrice = styled.span`
     margin-top: 30px;
     font-weight: bold;
+    color: green;
+    text-align: center;
 `
 
 const OrderModalBag = () => {
@@ -36,14 +38,14 @@ const OrderModalBag = () => {
 
     return (
         <Container>
-            {bag.map((snackOfBag, index) => (
+            {bag.snacks.map((snackOfBag, index) => (
                 <SnackOrder key={index}>
                     <Amount>{snackOfBag.amount}x</Amount>
                     <Name>{snackOfBag.name}</Name>
                     <Price>R$ {(snackOfBag.price*snackOfBag.amount).toFixed(2).replace('.', ',')}</Price>
                 </SnackOrder>
             ))}
-            <TotalPrice>Total: </TotalPrice>
+            <TotalPrice>Total: R$ {bag.totalPriceSnacks.toFixed(2).replace('.', ',')}</TotalPrice>
         </Container>
     )
 }

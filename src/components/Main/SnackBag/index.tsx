@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { useBag } from "../../../context/BagContext"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import ModalBag from "./ModalBag"
 
 const Container = styled.div`
@@ -64,50 +64,24 @@ const BtnProceedWithOrder = styled.button`
 
 
 const SnackBag = () => {
-    
+
     const [openModalClicked, setOpenModalClicked] = useState<any>();
 
-    const [totalOrderPriceAndAmount, setTotalOrderPriceAndAmount] = useState({
-        price: 0,
-        amount: 0
-    })
-
     const { bag } = useBag()
-
-    useEffect(() => {
-        const sumTotalOrderPriceAndAmount = () => {
-            const updatedBag = [...bag]
-
-            const totalPriceAndAmountOfSnacks = {
-                price: 0,
-                amount: 0
-            }
-            updatedBag.map(snackOfBag => {
-                totalPriceAndAmountOfSnacks.amount += snackOfBag.amount
-                totalPriceAndAmountOfSnacks.price += snackOfBag.price * snackOfBag.amount
-            })
-
-            setTotalOrderPriceAndAmount(totalPriceAndAmountOfSnacks)
-        }
-
-        sumTotalOrderPriceAndAmount()
-    }, [bag])
-
-    const totalOrderPriceFormatted = totalOrderPriceAndAmount.price.toFixed(2).replace('.', ',')
 
     return (
         <Container>
             <InfosTotalOrder>
                 <span>Total do pedido</span>
                 <div>
-                    <span className="totalOrderPrice">R$ {totalOrderPriceFormatted}</span>
+                    <span className="totalOrderPrice">R$ {bag.totalPriceSnacks.toFixed(2).replace('.', ',')}</span>
                     <span> / </span>
-                    <span className="totalOrderAmount">{totalOrderPriceAndAmount.amount} {totalOrderPriceAndAmount.amount === 1 ? 'item' : 'itens'}</span>
+                    <span className="totalOrderAmount">{bag.totalAmountSnacks} {bag.totalAmountSnacks === 1 ? 'item' : 'itens'}</span>
                 </div>
             </InfosTotalOrder>
             <BtnsTotalOrder>
                 <BtnSeeBag onClick={(event) => setOpenModalClicked(event)}>Ver sacola</BtnSeeBag>
-                <ModalBag openModalClicked={openModalClicked}/>
+                <ModalBag openModalClicked={openModalClicked} />
                 <BtnProceedWithOrder>Prosseguir com pedido</BtnProceedWithOrder>
             </BtnsTotalOrder>
         </Container>

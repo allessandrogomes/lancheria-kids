@@ -14,6 +14,8 @@ const ContainerModal = styled.div`
     align-items: center;
 `
 
+Modal.setAppElement('#root');
+
 const ModalBag = ({ openModalClicked }: ModalBagProps) => {
 
     const [modalState, setModalState] = useState<boolean>(false);

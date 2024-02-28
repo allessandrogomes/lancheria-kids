@@ -30,7 +30,7 @@ const AddRemoveSnackButtons = ({ snackName, snackPrice, id }: AddRemoveSnackButt
 
     useEffect(() => {
         const hideRemoveSnackButton = () => {
-            const snackIndex = bag.findIndex(item => item.id === snackAndPriceOfTheRespectiveButton.id)
+            const snackIndex = bag.snacks.findIndex(item => item.id === snackAndPriceOfTheRespectiveButton.id)
 
             if (snackIndex === -1) {
                 setStyleRemoveSnackButton('none')
