@@ -7,6 +7,8 @@ import InititalMessage from "./components/Main/InitialMessage"
 import Snacks from "./components/Main/Snacks"
 import SnackBag from "./components/Main/SnackBag"
 import { BagProvider } from "./context/BagContext"
+import Footer from "./components/Footer"
+import FooterInformation from "./components/Footer/FooterInformation"
 
 
 function App() {
@@ -23,6 +25,9 @@ function App() {
           <SnackBag />
         </BagProvider>
       </Main>
+      <Footer>
+        <FooterInformation />
+      </Footer>
     </>
   )
 }

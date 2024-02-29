@@ -58,16 +58,22 @@ const BtnSeeBag = styled.button`
     background-color: #9195F6;
 `
 
-const BtnProceedWithOrder = styled.button`
+export const BtnProceedWithOrder = styled.button`
     background-color: green;
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+    padding: 6px 10px;
+    color: #FAFAFA;
+    font-size: 0.75rem;
 `
 
 
 const SnackBag = () => {
 
-    const [openModalClicked, setOpenModalClicked] = useState<any>();
-
     const { bag } = useBag()
+
+    const [btnOpenBagClicked, setBtnOpenBagClicked] = useState<any>()
 
     return (
         <Container>
@@ -80,9 +86,9 @@ const SnackBag = () => {
                 </div>
             </InfosTotalOrder>
             <BtnsTotalOrder>
-                <BtnSeeBag onClick={(event) => setOpenModalClicked(event)}>Ver sacola</BtnSeeBag>
-                <ModalBag openModalClicked={openModalClicked} />
-                <BtnProceedWithOrder>Prosseguir com pedido</BtnProceedWithOrder>
+                <BtnSeeBag onClick={(event) => setBtnOpenBagClicked(event)}>Ver sacola</BtnSeeBag>
+                <ModalBag btnOpenBagClicked={btnOpenBagClicked}/>
+                <BtnProceedWithOrder onClick={(event) => setBtnOpenBagClicked(event)}>Prosseguir com pedido</BtnProceedWithOrder>
             </BtnsTotalOrder>
         </Container>
     )
