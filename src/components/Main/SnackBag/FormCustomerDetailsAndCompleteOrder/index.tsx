@@ -44,11 +44,12 @@ const FormCustomerDetailsAndCompleteOrder = () => {
     const handleSubmitForm = (event: any) => {
         event.preventDefault()
         setMessageToWhatsapp(() => {
-            const message = `
-                ${formData.name}
-                ${formData.city}
-                ${bag.totalAmountSnacks}
-                ${bag.totalPriceSnacks}
+            const message = `Cliente: ${formData.name}%0ATelefone: ${formData.phone}%0ACidade: ${formData.city}%0ABairro: ${formData.neighborhood}%0ARua: ${formData.street}%0ANúmero: ${formData.number}%0APonto de referência: ${formData.referencePoint}%0A%0APedido%0A%0A${bag.snacks.map(snack => {
+
+                const price = (snack.price * snack.amount).toFixed(2)
+
+                return `${snack.amount}x ${snack.name} R$ ${price.replace('.', ',')}`
+            }).reduce((prev, curr) => prev + '%0A' + curr)}%0A%0A*Valor total: R$ ${bag.totalPriceSnacks.toFixed(2).toString().replace('.', ',')}*
             `
             return message
         })
@@ -56,7 +57,7 @@ const FormCustomerDetailsAndCompleteOrder = () => {
 
     useEffect(() => {
         if (messageToWhatsapp) {
-            window.open(`https://api.whatsapp.com/send?phone=5574999658200&text=${messageToWhatsapp}`, '_blank')
+            window.open(`https://api.whatsapp.com/send?phone=5574999258446&text=${messageToWhatsapp}`, '_blank')
         }
     }, [messageToWhatsapp])
 
